@@ -1,0 +1,9 @@
+# Carpetas a ignorar
+
+PongSigil/bin/
+
+PongSigil/obj/
+
+PongSigil/.vs/raylib/v15/ipch
+
+PongSigil/.vs/raylib/v15/Browse.VC.db
