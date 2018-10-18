@@ -17,7 +17,7 @@ namespace app
 		char text2[] = "Presiona ENTER para jugar";
 		char text3[] = "C para ver los creditos";
 		char text4[] = "ESC para salir";
-		char text5[] = "V 1.0";
+		char text5[] = "V 0.2";
 		int sizeText1 = 0; 
 		int sizeText2 = 0; 
 		int sizeText3 = 0; 
@@ -31,49 +31,51 @@ namespace app
 		int text4PositionY = 0;
 		int text5PositionX = 0;
 		int text5PositionY = 0;
-		Music menuSong;
+		//Music menuSong;
 
 		void InitMenu()
 		{
-			menuSong = LoadMusicStream("res/sounds/menusong.ogg");
-			PlayMusicStream(menuSong);
-			sizeText1 = (GetScreenWidth() * 140) / 800;
-			sizeText2 = (GetScreenWidth() * 20) / 800;
-			sizeText3 = (GetScreenWidth() * 15) / 800;
-			textPositionX = GetScreenWidth() / 2 - MeasureText(text1, sizeText1) / 2;
-			textPositionY = GetScreenHeight() * 0.2333333;
-			text2PositionX = GetScreenWidth() / 2 - MeasureText(text2, sizeText2) / 2;
-			text2PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.1333333;
-			text3PositionX = GetScreenWidth() / 2 - MeasureText(text3, sizeText2) / 2;
-			text3PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.2333333;
-			text4PositionX = GetScreenWidth() / 2 - MeasureText(text4, sizeText2) / 2;
-			text4PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.3333333;
-			text5PositionX = GetScreenWidth() * 0.05;
-			text5PositionY = GetScreenHeight() * 0.95;
+			//menuSong = LoadMusicStream("res/sounds/menusong.ogg");
+		//	PlayMusicStream(menuSong);
+			slSetFont(slLoadFont("res/ttf/whitrabt.ttf"), 24);
+			slSetTextAlign(SL_ALIGN_CENTER);
+			sizeText1 = (screenWidth * 140) / 800;
+			sizeText2 = (screenWidth * 20) / 800;
+			sizeText3 = (screenWidth * 15) / 800;
+			textPositionX = screenWidth / 2;
+			textPositionY = screenHeight * 0.6;
+			text2PositionX = screenWidth / 2;
+			text2PositionY = screenHeight / 2 - screenHeight * 0.1333333;
+			text3PositionX = screenWidth / 2 ;
+			text3PositionY = screenHeight / 2 - screenHeight * 0.2333333;
+			text4PositionX = screenWidth / 2;
+			text4PositionY = screenHeight / 2 - screenHeight * 0.3333333;
+			text5PositionX = screenWidth * 0.05;
+			text5PositionY = screenHeight * 0.05;
 		}
 
 		void UpdateMenu()
 		{
-			UpdateMusicStream(menuSong);
-			if (IsKeyPressed(KEY_ENTER))
+			//UpdateMusicStream(menuSong);
+			if (slGetKey(SL_KEY_ENTER))
 			{
 				currentScreen=Gameplay;
 			}
 
-			if (IsKeyPressed(KEY_ESCAPE))
+			if (slGetKey(SL_KEY_ESCAPE))
 			{
 				exit = true;
 			}
 
-			if (IsKeyPressed(KEY_P))
+		/*	if (IsKeyPressed(KEY_P))
 			{
 				pause = !pause;
 
 				if (pause) StopMusicStream(menuSong);
 				else PlayMusicStream(menuSong);
-			}
+			}*/
 
-			if (IsKeyPressed(KEY_C))
+			if (slGetKey('C'))
 			{
 				currentScreen=Credits;
 			}
@@ -81,12 +83,19 @@ namespace app
 
 		void DrawMenu()
 		{
-			ClearBackground(BLACK);
-			DrawText(text1, textPositionX, textPositionY, sizeText1, GRAY);
-			DrawText(text2, text2PositionX, text2PositionY, sizeText2, GRAY);
-			DrawText(text3, text3PositionX, text3PositionY, sizeText2, GRAY);
-			DrawText(text4, text4PositionX, text4PositionY, sizeText2, GRAY);
-			DrawText(text5, text5PositionX, text5PositionY, sizeText2, VIOLET);
+			slSetForeColor(0.1, 0.9, 0.2, 0.4);
+
+			slSetForeColor(0.0, 0.8, 0.2, 1.0);
+			slSetFontSize(sizeText1);
+			slText(textPositionX, textPositionY, text1);
+
+			slSetFontSize(sizeText2);
+			slText(text2PositionX, text2PositionY, text2);
+			slText(text3PositionX, text3PositionY, text3);
+			slText(text4PositionX, text4PositionY, text4);
+
+			slSetFontSize(sizeText3);
+			slText(text5PositionX, text5PositionY, text5);
 		}
 	}
 }

@@ -11,6 +11,8 @@ namespace app
 
 	extern bool exit;
 	extern Screens currentScreen;
+	extern int screenWidth;
+	extern int screenHeight;
 
 	void ExecuteGame();
 }

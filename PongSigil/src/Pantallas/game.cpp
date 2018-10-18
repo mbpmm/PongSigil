@@ -13,6 +13,11 @@ namespace app
 {
 	namespace game
 	{
+		struct Vector2
+		{
+			float x;
+			float y;
+		};
 		struct Ball
 		{
 			Vector2 position;

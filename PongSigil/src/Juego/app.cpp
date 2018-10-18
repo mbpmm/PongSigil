@@ -15,16 +15,15 @@ using namespace credits;
 
 namespace app
 {
-	int screenWidth = 1600;
-	int screenHeight = 900;
+	extern int screenWidth = 1600;
+	extern int screenHeight = 900;
 	bool exit = false;
 	Screens currentScreen = Menu;
 
 	static void InitGame()
 	{
 		slWindow(screenWidth, screenHeight, "PONG",0);
-		InitAudioDevice();
-		InitValues();
+		//InitValues();
 		InitMenu();
 		InitCredits();
 		InitGameover();
@@ -42,7 +41,7 @@ namespace app
 			UpdateCredits();
 			break;
 		case Gameplay:
-			UpdateFrame();
+		//	UpdateFrame();
 			break;
 		case GameOver:
 			UpdateGameOver();
@@ -54,7 +53,6 @@ namespace app
 
 	static void DrawGame()
 	{
-		BeginDrawing();
 		switch (currentScreen)
 		{
 		case Menu:
@@ -64,20 +62,20 @@ namespace app
 			DrawCredits();
 			break;
 		case Gameplay:
-			Draw();
+		//	Draw();
 			break;
 		case GameOver:
 			DrawGameOver();
 		default:
 			break;
 		}
-		EndDrawing();
+		slRender();
 	}
 
 	static void CloseGame()
 	{
-		CloseAudioDevice();
-		CloseWindow();
+		//CloseAudioDevice();
+		slClose();
 	}
 
 	void ExecuteGame()

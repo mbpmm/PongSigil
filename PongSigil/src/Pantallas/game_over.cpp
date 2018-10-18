@@ -16,28 +16,27 @@ namespace app
 		int text1PositionY = 0;
 		int text2PositionX = 0;
 		int text2PositionY = 0;
-		int winnerNumber = 0;
 		int sizeText1 = 0;
 		int sizeText2 = 0;
 
 		void InitGameover()
 		{
-			sizeText1 = (GetScreenWidth() * 50) / 800;
-			sizeText2 = (GetScreenWidth() * 20) / 800;
-			text1PositionX = GetScreenWidth() / 2 - GetScreenWidth() * 0.2625;
-			text1PositionY = GetScreenHeight() / 2 - GetScreenHeight() * 0.13333333;
-			text2PositionX = GetScreenWidth() * 0.1875;
-			text2PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.13333333;
+			sizeText1 = (screenWidth * 50) / 800;
+			sizeText2 = (screenWidth * 20) / 800;
+			text1PositionX = screenWidth / 2 + screenWidth * 0.2625;
+			text1PositionY = screenHeight / 2 - screenHeight * 0.13333333;
+			text2PositionX = screenWidth * 0.1875;
+			text2PositionY = screenHeight / 2 + screenHeight * 0.13333333;
 		}
 
 		void UpdateGameOver()
 		{
-			if (IsKeyPressed(KEY_SPACE))
+			if (slGetKey(' '))
 			{
 				currentScreen = Menu;
-				ResetValues();
+				//ResetValues();
 			}
-			if (IsKeyPressed(KEY_ESCAPE))
+			if (slGetKey(SL_KEY_ESCAPE))
 			{
 				exit = true;
 			}
@@ -47,18 +46,25 @@ namespace app
 		{
 			if (winner == p1Wins)
 			{
-				winnerNumber = 1;
+				slSetForeColor(0.1, 0.9, 0.2, 0.4);
+
+				slSetForeColor(0.0, 0.8, 0.2, 1.0);
+				slSetFontSize(sizeText1);
+				slText(text2PositionX, text2PositionY, "Gano el jugador 1!!!");
+				slSetFontSize(sizeText2);
+				slText(text1PositionX, text1PositionY, "Apreta ESPACIO para volver al menu, ESC para salir");
+				
 			}
 			if (winner == p2Wins)
 			{
-				winnerNumber = 2;
+				slSetForeColor(0.1, 0.9, 0.2, 0.4);
+
+				slSetForeColor(0.0, 0.8, 0.2, 1.0);
+				slSetFontSize(sizeText1);
+				slText(text2PositionX, text2PositionY, "Gano el jugador 2!!!");
+				slSetFontSize(sizeText2);
+				slText(text1PositionX, text1PositionY, "Apreta ESPACIO para volver al menu, ESC para salir");
 			}
-
-			ClearBackground(BLACK);
-			DrawText(FormatText("Gano el jugador %01i!!", winnerNumber), text1PositionX, text1PositionY, sizeText1, GRAY);
-			DrawText("Apreta ESPACIO para volver al menu, ESC para salir", text2PositionX, text2PositionY, sizeText2, GRAY);
 		}
-
-
 	}
 }
